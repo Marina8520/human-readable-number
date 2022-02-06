@@ -13,7 +13,7 @@ module.exports = function toReadable (number) {
         "eleven",
         "twelve",
         "thirteen",
-        "fourteen",
+        "forteen",
         "fifthteen",
         "sixteen",
         "seventeen",
@@ -23,7 +23,7 @@ module.exports = function toReadable (number) {
       let dozens = [
         "twenty",
         "thirty",
-        "fourty",
+        "forty",
         "fifty",
         "sixty",
         "seventy",
@@ -48,14 +48,19 @@ module.exports = function toReadable (number) {
         numberDozens = Math.floor(number / 10) % 10;
         numberUnits = number % 10;
         if (numberUnits !== 0 && numberDozens !== 0) {
-          numberSting = units[numberHundreds - 1] + " hundred " + dozens[numberDozens - 2] + " " + units[numberUnits - 1];
+            if (numberDozens === 1) {
+                numberSting = units[numberHundreds - 1] + " hundred " + units[numberUnits + 9];
+              }
+              else {
+              numberSting = units[numberHundreds - 1] + " hundred " + dozens[numberDozens - 2] + " " + units[numberUnits - 1];
+              }
         } else if (numberUnits == 0 && numberDozens !== 0) {
           numberSting = units[numberHundreds - 1] + " hundred " + dozens[numberDozens - 2];
         } else if (numberUnits !== 0 && numberDozens == 0) {
-          numberSting = units[numberHundreds - 1] + " hundred " + " " + units[numberUnits - 1];
+            numberSting = units[numberHundreds - 1] + " hundred " + units[numberUnits - 1];
         } else {
           numberSting = units[numberHundreds - 1] + " hundred ";
         }
-      } return numberSting;
+      } return numberSting
 
 }
